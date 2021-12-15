@@ -28,7 +28,8 @@
     "build:watch": "tsc -w -p tsconfig.release.json",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "recache": "node build/src/recache.js"
   },
   "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
   "license": "Apache-2.0",
@@ -38,6 +39,7 @@
     "apollo-server-fastify": "^3.5.0",
     "fastify": "^3.25.0",
     "graphql": "^15.8.0",
+    "graphql-request": "^3.7.0",
     "tslib": "~2.3.1"
   },
   "volta": {
