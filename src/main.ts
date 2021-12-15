@@ -1,6 +1,7 @@
-import { ApolloServer, gql } from 'apollo-server-fastify';
+import { ApolloServer } from 'apollo-server-fastify';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import fastify, { FastifyInstance } from 'fastify';
+import { readFileSync } from "fs";
 
 function fastifyAppClosePlugin(app: FastifyInstance) {
   return {
@@ -31,16 +32,7 @@ async function startApolloServer(typeDefs, resolvers) {
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
 }
 
-const typeDefs = gql`
-  type Query {
-  products: [Product]
-}
-
-type Product {
-  id: ID!
-  name: String
-}
-`
+const typeDefs = readFileSync('../../schema.graphql').toString('utf-8')
 
 const resolvers = {
   Query: {
