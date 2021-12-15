@@ -30,7 +30,12 @@ export class ESClient implements IESClient {
          })
     }
 
-    indexExists(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>>{
+    dropIndex(indexName: string): void
+    {
+        this.client.indices.delete({ index: indexName});
+    }
+
+    indexExists(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>> {
         return this.client.indices.exists({index: indexName});
     }
 

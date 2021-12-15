@@ -10,7 +10,7 @@ export class GQLProductsFetcher {
         }
 
         const client = new GraphQLClient(config.gqlUri, {headers: config.headers})
-        return client.request(this.getGQLQuery(), []).then((data) => console.log(data))
+        return client.request(this.getGQLQuery(), []);
     }
 
     getGQLQuery(): string {

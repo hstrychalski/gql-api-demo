@@ -4,7 +4,9 @@ import {ApiResponse} from "@elastic/elasticsearch";
 export interface IESClient {
     indexExists(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>>
 
-    createIndex(name: string): void
+    createIndex(indexName: string, products: object[]): void
+
+    dropIndex(indexName: string): void
 
     queryById(id: number)
 }
