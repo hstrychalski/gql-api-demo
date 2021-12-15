@@ -22,5 +22,9 @@ client.indexExists(index)
 }).then(() => {
     return fetcher.fetchProducts();
 }).then(products => {
-    client.pushProductsToIndex(index, products.displays)
-});
+    return client.pushProductsToIndex(index, products.displays)
+}).then((results: DisplayPushResult[]) => {
+    results.forEach(result => {
+        console.log(result.body)
+    })
+})
