@@ -1,7 +1,8 @@
 import { ESClient } from "./ESClient";
 import { GQLProductsFetcher } from './GQLProductsFetcher';
+import 'dotenv/config'
 
-const index = 'test-index';
+const index = process.env.INDEX_NAME
 const client = new ESClient()
 
 const fetcher = new GQLProductsFetcher();
