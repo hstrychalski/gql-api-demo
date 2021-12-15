@@ -16,7 +16,7 @@ export class GQLProductsFetcher {
     getGQLQuery(): string {
         return gql`
             query {
-                displays {
+                displays (limit: 1) {
                     id
                     name
                     status

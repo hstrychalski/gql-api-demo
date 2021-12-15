@@ -10,24 +10,19 @@ export class ESClient implements IESClient {
         this.client = new Client({ node: 'http://localhost:9200' })
     }
 
-    createIndex(name: string): void {
-         this.client.indices.create({
+    createIndex(name: string): TransportRequestPromise<ApiResponse<boolean, unknown>> {
+         return this.client.indices.create({
             index: name,
-            body: {
-                "mappings": {
-                    "display": {
-                        "properties": {
-                            "id": {"type": "integer"},
-                            "name": {"type": "text"}
-                        }
-                    }
-                }
-            }
-        }).then(result => {
-            if (result.statusCode !== 200) {
-                throw Error('Failed to create an index: ' + JSON.stringify(result))
-            }
-         })
+        });
+    }
+
+    pushProductsToIndex(indexName: string, body: object): TransportRequestPromise<ApiResponse<boolean, unknown>> {
+        return this.client.index({
+            index: indexName,
+            type: Mapping,
+            id: _id,
+            body: body
+        });
     }
 
     dropIndex(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>>
