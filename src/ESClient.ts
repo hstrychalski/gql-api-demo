@@ -16,13 +16,17 @@ export class ESClient implements IESClient {
         });
     }
 
-    pushProductsToIndex(indexName: string, body: object): TransportRequestPromise<ApiResponse<boolean, unknown>> {
-        return this.client.index({
-            index: indexName,
-            type: Mapping,
-            id: _id,
-            body: body
-        });
+    pushProductsToIndex(indexName: string, displays: IDisplay[]): void {
+        displays.forEach((display: IDisplay) => {
+            this.client.index({
+                index: indexName,
+                type: "product",
+                id: display.id,
+                body: display
+            });
+
+            //idk how to return promise here :P
+        })
     }
 
     dropIndex(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>>

@@ -22,5 +22,5 @@ client.indexExists(index)
 }).then(() => {
     return fetcher.fetchProducts();
 }).then(products => {
-    client.
+    client.pushProductsToIndex(index, products.displays)
 });

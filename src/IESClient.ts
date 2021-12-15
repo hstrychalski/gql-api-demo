@@ -6,7 +6,7 @@ export interface IESClient {
 
     createIndex(name: string): TransportRequestPromise<ApiResponse<boolean, unknown>>
 
-    pushProductsToIndex(name: string, body: object): TransportRequestPromise<ApiResponse<boolean, unknown>>
+    pushProductsToIndex(name: string, displays: IDisplay[]): void
 
     dropIndex(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>>
 
