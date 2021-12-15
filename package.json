@@ -1,0 +1,17 @@
+{
+  "name": "gql-api-demo",
+  "version": "1.0.0",
+  "description": "PoC of graphql checkout API running on apollo server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hstrychalski",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-core": "^3.5.0",
+    "apollo-server-fastify": "^3.5.0",
+    "fastify": "^3.25.0",
+    "graphql": "^15.8.0"
+  }
+}
