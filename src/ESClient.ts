@@ -39,8 +39,20 @@ export class ESClient implements IESClient {
         return this.client.indices.exists({index: indexName});
     }
 
-    queryById(id: number) {
-        console.log(id)
+    queryById(indexName: string, id: number) {
+        // I believe that's the place where we need to receive body object created by resolvers
+        this.client.search({
+            index: indexName,
+            body: {
+                query: {
+                    terms: {
+                        id: id
+                    }
+                }
+            }
+        }).then(result => {
+            console.log(result);
+        })
     }
 
 }

@@ -8,5 +8,5 @@ export interface IESClient {
 
     dropIndex(indexName: string): void
 
-    queryById(id: number)
+    queryById(indexName: string, id: number)
 }
