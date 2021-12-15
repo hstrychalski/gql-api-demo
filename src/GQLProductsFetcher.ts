@@ -1,11 +1,12 @@
 import {GraphQLClient, gql} from 'graphql-request'
+import 'dotenv/config'
 
 export class GQLProductsFetcher {
     fetchProducts(): Promise<any> {
         const config = {
-            gqlUri: "https://sandbox.centraqa.com/graphql",
+            gqlUri: process.env.GQL_URL,
             headers: {
-                Authorization: "Bearer 83d142fda542a937987c47fc4d673173"
+                Authorization: "Bearer " + process.env.TOKEN
             }
         }
 
