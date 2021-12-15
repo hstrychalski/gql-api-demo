@@ -6,7 +6,7 @@ export interface IESClient {
 
     createIndex(indexName: string, products: object[]): void
 
-    dropIndex(indexName: string): void
+    dropIndex(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>>
 
     queryById(indexName: string, id: number)
 }
