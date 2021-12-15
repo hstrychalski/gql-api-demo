@@ -23,7 +23,11 @@ export class ESClient implements IESClient {
                     }
                 }
             }
-        });
+        }).then(result => {
+            if (result.statusCode !== 200) {
+                throw Error('Failed to create an index: ' + JSON.stringify(result))
+            }
+         })
     }
 
     indexExists(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>>{
