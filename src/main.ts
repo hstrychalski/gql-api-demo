@@ -2,6 +2,7 @@ import { ApolloServer } from 'apollo-server-fastify';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import fastify, { FastifyInstance } from 'fastify';
 import { readFileSync } from "fs";
+import {ESClient} from "./ESClient";
 
 function fastifyAppClosePlugin(app: FastifyInstance) {
   return {
@@ -32,12 +33,18 @@ async function startApolloServer(typeDefs, resolvers) {
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
 }
 
-const typeDefs = readFileSync('../../schema.graphql').toString('utf-8')
+const typeDefs = readFileSync('schema.graphql').toString('utf-8')
 
 const resolvers = {
   Query: {
     products() {
-      return [{id: 1, name: "test"}]
+      const client = new ESClient();
+      return client.queryAll(process.env.INDEX_NAME).then(response => {
+        return response.body.hits.hits.map(document => {
+          const product = document._source;
+          return { id: product.id, name: product.name }
+        })
+      });
     }
   }
 }

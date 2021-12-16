@@ -10,5 +10,7 @@ export interface IESClient {
 
     dropIndex(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>>
 
+    queryAll(indexName: string): TransportRequestPromise<ApiResponse<any, any>>
+
     queryById(indexName: string, id: number)
 }

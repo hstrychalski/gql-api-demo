@@ -7,7 +7,7 @@ export class ESClient implements IESClient {
     client: Client
 
     constructor() {
-        this.client = new Client({ node: 'http://localhost:9200' })
+        this.client = new Client({ node: 'http://127.0.0.1:9200' })
     }
 
     createIndex(name: string): TransportRequestPromise<ApiResponse<boolean, unknown>> {
@@ -36,6 +36,18 @@ export class ESClient implements IESClient {
 
     indexExists(indexName: string): TransportRequestPromise<ApiResponse<boolean, unknown>> {
         return this.client.indices.exists({index: indexName});
+    }
+
+    queryAll(indexName: string): TransportRequestPromise<ApiResponse<any, any>>
+    {
+        return this.client.search({
+            index: indexName,
+            body: {
+                query: {
+                    match_all: {}
+                }
+            }
+        })
     }
 
     queryById(indexName: string, id: number) {
