@@ -28,4 +28,6 @@ client.indexExists(index)
     results.forEach(result => {
         console.log(result.body)
     })
+}).catch(error => {
+    console.log("Error: " + error);
 })
