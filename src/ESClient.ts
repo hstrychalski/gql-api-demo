@@ -50,20 +50,18 @@ export class ESClient implements IESClient {
         })
     }
 
-    queryById(indexName: string, id: number) {
-        // I believe that's the place where we need to receive body object created by resolvers
-        this.client.search({
+    queryById(indexName: string, id: number): TransportRequestPromise<ApiResponse<any, any>> {
+        return this.client.search({
             index: indexName,
             body: {
                 query: {
-                    terms: {
-                        id: id
+                    term: {
+                        id: {
+                            value: id
+                        }
                     }
                 }
             }
-        }).then(result => {
-            console.log(result);
         })
     }
-
 }

@@ -12,5 +12,5 @@ export interface IESClient {
 
     queryAll(indexName: string): TransportRequestPromise<ApiResponse<any, any>>
 
-    queryById(indexName: string, id: number)
+    queryById(indexName: string, id: number): TransportRequestPromise<ApiResponse<any, any>>
 }
